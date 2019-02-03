@@ -1,13 +1,16 @@
 import { EmptyState, Layout, Page , ResourcePicker} from '@shopify/polaris';
+import store from 'store-js';
 
 class Index extends React.Component {
 state = { open: false };
+hold = store.get('test');
     render() {
             return (
             <Page
                 primaryAction={{
                     content: 'Select products',
                     onAction: () => this.setState({open: true}),
+                    onAction: () => store.set("try", "cool"),
                 }}
             >
                 <ResourcePicker
@@ -18,7 +21,7 @@ state = { open: false };
                     onCancel={() => this.setState({open: false})}/>
                 <Layout>
                     <EmptyState
-                        heading="Select products to start"
+                        heading={this.hold}
                         action={{
                             content: 'Select products',
                             onAction: () => this.setState({open: true}),
@@ -34,7 +37,7 @@ state = { open: false };
      handleSelection = (resources) => {
         const idsFromResources = resources.selection.map((product) => product.id);
         this.setState({open: false});
-         console.log(resources)
+        console.log(resources)
      }
 }
 
