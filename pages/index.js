@@ -3,14 +3,14 @@ import store from 'store-js';
 
 class Index extends React.Component {
 state = { open: false };
-hold = store.get('test');
+
     render() {
             return (
             <Page
                 primaryAction={{
-                    content: 'Select products',
+                    content: store.get('user'),
                     onAction: () => this.setState({open: true}),
-                    onAction: () => store.set("try", "cool"),
+                    
                 }}
             >
                 <ResourcePicker

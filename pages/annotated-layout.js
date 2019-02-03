@@ -14,13 +14,13 @@ import store from 'store-js';
 
 class AnnotatedLayout extends React.Component {
     state = {
-        discount: '10%',
+        user: store.get('user'),
         enabled: false,
     };
-    i = store.get("try");
+    
 
     render() {
-        const { discount, enabled } = this.state;
+        const { user, enabled } = this.state;
         const contentStatus = enabled ? 'Disable' : 'Enable';
         const textStatus = enabled ? 'enabled' : 'disabled';
 
@@ -28,23 +28,23 @@ class AnnotatedLayout extends React.Component {
             <Page>
                 <Layout>
                     <Layout.AnnotatedSection
-                        title="Default discount"
-                        description="When you add a product to Sample App, it will automatically be discounted by this percentage."
+                        title="Store Login"
+                        description="Save your Shopify store name here"
                     >
                         <Card sectioned>
                             <Form onSubmit={this.handleSubmit}>
                                 <FormLayout>
                                     <TextField
-                                        value={discount}
-                                        onChange={this.handleChange('discount')}
-                                        label="Discount percentage"
-                                        type="discount"
+                                        value={user}
+                                        onChange={this.handleChange('user')}
+                                        label="Store Name"
+                                        type="user"
                                     />
                                     <Stack distribution="trailing">
                                         <Button 
                                             primary 
                                             submit
-                                            onClick={() => store.set('text', 'it works')}
+                                            onClick={() => store.set('user', this.state.user)}
                                             >
                                             Save
                                         </Button>
@@ -55,7 +55,7 @@ class AnnotatedLayout extends React.Component {
                     </Layout.AnnotatedSection>
                     <Layout.AnnotatedSection
                         title={this.i}
-                        description="Temporarily disable all Sample App price updates"
+                        description="Another setting"
                         >
                         <SettingToggle
                             action={{
@@ -74,7 +74,7 @@ class AnnotatedLayout extends React.Component {
     }
     handleSubmit = () => {
         this.setState({
-            discount: this.state.discount,
+            user: this.state.user,
         });
         console.log('submission', this.state);
     };

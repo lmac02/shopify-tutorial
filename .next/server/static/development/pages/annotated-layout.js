@@ -106,6 +106,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _shopify_polaris__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @shopify/polaris */ "@shopify/polaris");
 /* harmony import */ var _shopify_polaris__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_shopify_polaris__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var store_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! store-js */ "store-js");
+/* harmony import */ var store_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(store_js__WEBPACK_IMPORTED_MODULE_2__);
 
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -130,6 +132,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
 var AnnotatedLayout =
 /*#__PURE__*/
 function (_React$Component) {
@@ -149,13 +152,13 @@ function (_React$Component) {
     _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(AnnotatedLayout)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", {
-      discount: '10%',
+      user: store_js__WEBPACK_IMPORTED_MODULE_2___default.a.get('user'),
       enabled: false
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleSubmit", function () {
       _this.setState({
-        discount: _this.state.discount
+        user: _this.state.user
       });
 
       console.log('submission', _this.state);
@@ -182,31 +185,36 @@ function (_React$Component) {
   _createClass(AnnotatedLayout, [{
     key: "render",
     value: function render() {
+      var _this2 = this;
+
       var _this$state = this.state,
-          discount = _this$state.discount,
+          user = _this$state.user,
           enabled = _this$state.enabled;
       var contentStatus = enabled ? 'Disable' : 'Enable';
       var textStatus = enabled ? 'enabled' : 'disabled';
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_shopify_polaris__WEBPACK_IMPORTED_MODULE_1__["Page"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_shopify_polaris__WEBPACK_IMPORTED_MODULE_1__["Layout"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_shopify_polaris__WEBPACK_IMPORTED_MODULE_1__["Layout"].AnnotatedSection, {
-        title: "Default discount",
-        description: "When you add a product to Sample App, it will automatically be discounted by this percentage."
+        title: "Store Login",
+        description: "Save your Shopify store name here"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_shopify_polaris__WEBPACK_IMPORTED_MODULE_1__["Card"], {
         sectioned: true
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_shopify_polaris__WEBPACK_IMPORTED_MODULE_1__["Form"], {
         onSubmit: this.handleSubmit
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_shopify_polaris__WEBPACK_IMPORTED_MODULE_1__["FormLayout"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_shopify_polaris__WEBPACK_IMPORTED_MODULE_1__["TextField"], {
-        value: discount,
-        onChange: this.handleChange('discount'),
-        label: "Discount percentage",
-        type: "discount"
+        value: user,
+        onChange: this.handleChange('user'),
+        label: "Store Name",
+        type: "user"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_shopify_polaris__WEBPACK_IMPORTED_MODULE_1__["Stack"], {
         distribution: "trailing"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_shopify_polaris__WEBPACK_IMPORTED_MODULE_1__["Button"], {
         primary: true,
-        submit: true
+        submit: true,
+        onClick: function onClick() {
+          return store_js__WEBPACK_IMPORTED_MODULE_2___default.a.set('user', _this2.state.user);
+        }
       }, "Save")))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_shopify_polaris__WEBPACK_IMPORTED_MODULE_1__["Layout"].AnnotatedSection, {
-        title: "Price updates",
-        description: "Temporarily disable all Sample App price updates"
+        title: this.i,
+        description: "Another setting"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_shopify_polaris__WEBPACK_IMPORTED_MODULE_1__["SettingToggle"], {
         action: {
           content: contentStatus,
@@ -257,6 +265,17 @@ module.exports = require("@shopify/polaris");
 /***/ (function(module, exports) {
 
 module.exports = require("react");
+
+/***/ }),
+
+/***/ "store-js":
+/*!***************************!*\
+  !*** external "store-js" ***!
+  \***************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("store-js");
 
 /***/ })
 
